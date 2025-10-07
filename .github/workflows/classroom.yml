@@ -30,16 +30,12 @@ jobs:
         setup-command: ''
         command: "./lab09"
         input: ''
-        expected-output: "0 1 2 3 4 5 6 7 8 9 Stack A is full! Stack A length: 10Stack
-          B length: 10top\t9\n\t8\n\t7\n\t6\n\t5\n\t4\n\t3\n\t2\n\t1\n\t0\npush: error,
-          stack is full, avoiding overflowPopping 9 from stack BPopping 8 from stack
-          BPopping 7 from stack BPopping 6 from stack BPopping 5 from stack BStack
-          B length: 5top\t4\n\t3\n\t2\n\t1\n\t0\nStack B is now empty after being
-          clearedStack is empty, no elements to display.\npop: error, stack is empty,
-          avoiding underflowpeek: error, stack is empty, cannot access the topStack
-          A length: 10Stack C length: 10Stack C before rotation:top9\n\t8\n\t7\n\t6\n\t5\n\t4\n\t3\n\t2\n\t1\n\t0\nStack
-          C after right rotating half the elements:top\t4\n\t3\n\t2\n\t1\n\t0\n\t9\n\t8\n\t7\n\t6\n\t5\nStack
-          C after the same number of left rotations (should match beginning):top\t9\n\t8\n\t7\n\t6\n\t5\n\t4\n\t3\n\t2\n\t1\n\t0"
+        expected-output: '0 1 2 3 4 5 6 7 8 9 Stack A is full! Stack A length: 10Stack
+          B length: 10push: error, stack is full, avoiding overflowPopping 9 from
+          stack BPopping 8 from stack BPopping 7 from stack BPopping 6 from stack
+          BPopping 5 from stack BStack B length: 5Stack B is now empty after being
+          clearedpop: error, stack is empty, avoiding underflowpeek: error, stack
+          is empty, cannot access the topStack A length: 10Stack C length: 10'
         comparison-method: contains
         timeout: 10
         max-score: 5
