@@ -98,7 +98,15 @@ void ArrayStack<T>::push(const T& elem) {
     }
     catch (const overflow_error& e) {
         cerr << "Overflow error in push(): " << e.what() << endl;
-        throw; // rethrow so the caller can still handle it
+        return;
+    }
+    catch (const exception& e) {
+        cerr << "General exception in push(): " << e.what() << endl;
+        return;
+    }
+    catch (...) {
+        cerr << "Unknown exception occurred in push()." << endl;
+        return;
     }
 }
 

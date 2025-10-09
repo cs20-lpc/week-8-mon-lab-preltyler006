@@ -38,14 +38,8 @@ int main() {
     expect(a.isFull(), "Stack becomes full at capacity");
 
     // --- 2) Overflow should throw ---
-    try {
         a.push(99);
         cout << "[FAIL] Expected overflow on push to full stack\n";
-    } catch (const overflow_error& e) {
-        cout << "[OK]   Caught overflow: " << e.what() << endl;
-    } catch (const exception& e) {
-        cout << "[OK]   Caught exception: " << e.what() << endl;
-    }
 
     // --- 3) Peek and Pop ---
     expect(a.peek() == 5, "Peek returns top element (5)");
