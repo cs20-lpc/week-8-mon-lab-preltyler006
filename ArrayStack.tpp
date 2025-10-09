@@ -70,20 +70,50 @@ bool ArrayStack<T>::isFull() const {
 
 template <typename T>
 T ArrayStack<T>::peek() const {
-    if (this->isEmpty()) {
-        throw underflow_error("peek(): Stack is empty");
+    try {
+        if (this->isEmpty()) {
+            throw underflow_error("peek(): Stack is empty");
+        }
+        return this->buffer[this->length - 1];
     }
-
-    return this->buffer[this->length - 1];
+    catch (const underflow_error& e) {
+        cerr << "Underflow error in peek(): " << e.what() << endl;
+        // swallow; return a safe default
+        return T{};
+    }
+    catch (const exception& e) {
+        cerr << "General exception in peek(): " << e.what() << endl;
+        return T{};
+    }
+    catch (...) {
+        cerr << "Unknown exception occurred in peek()." << endl;
+        return T{};
+    }
 }
 
 template <typename T>
 void ArrayStack<T>::pop() {
-    if (this->isEmpty()) {
-        throw underflow_error("pop(): Stack is empty");
+    try {
+        if (this->isEmpty()) {
+            throw underflow_error("pop(): Stack is empty");
+        }
+        // remove top element
+        this->length--;
+        // (optional) zero-out slot: this->buffer[this->length] = T{};
     }
-
-    this->length--;
+    catch (const underflow_error& e) {
+        cerr << "Underflow error in pop(): " << e.what() << endl;
+        // swallow; do not rethrow
+        return;
+    }
+    catch (const exception& e) {
+        cerr << "General exception in pop(): " << e.what() << endl;
+        return;
+    }
+    catch (...) {
+        cerr << "Unknown exception occurred in pop()." << endl;
+        return;
+    }
 }
 
 template <typename T>

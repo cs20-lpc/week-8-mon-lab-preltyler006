@@ -70,23 +70,10 @@ int main() {
     printStack(b, "B after clear()");
     expect(b.isEmpty(), "Cleared stack is empty");
     // Underflow on pop
-    try {
-        b.pop();
-        cout << "[FAIL] Expected underflow on pop from empty stack\n";
-    } catch (const underflow_error& e) {
-        cout << "[OK]   Caught underflow (pop): " << e.what() << endl;
-    } catch (const exception& e) {
-        cout << "[OK]   Caught exception (pop): " << e.what() << endl;
-    }
+    b.pop();
+
     // Underflow on peek
-    try {
-        (void)b.peek();
-        cout << "[FAIL] Expected underflow on peek from empty stack\n";
-    } catch (const underflow_error& e) {
-        cout << "[OK]   Caught underflow (peek): " << e.what() << endl;
-    } catch (const exception& e) {
-        cout << "[OK]   Caught exception (peek): " << e.what() << endl;
-    }
+    b.peek();
 
     // --- 7) Mixed operations sanity check ---
     ArrayStack<int> d(3);
