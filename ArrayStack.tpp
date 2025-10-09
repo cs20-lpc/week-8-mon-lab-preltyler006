@@ -88,12 +88,18 @@ void ArrayStack<T>::pop() {
 
 template <typename T>
 void ArrayStack<T>::push(const T& elem) {
-    if (this->isFull()) {
-        throw overflow_error("push(): Stack is full");
-    }
+    try {
+        if (this->isFull()) {
+            throw overflow_error("push(): Stack is full");
+        }
 
-    this->buffer[this->length] = elem;
-    this->length++;
+        this->buffer[this->length] = elem;
+        this->length++;
+    }
+    catch (const overflow_error& e) {
+        cerr << "Overflow error in push(): " << e.what() << endl;
+        throw; // rethrow so the caller can still handle it
+    }
 }
 
 template <typename T>
