@@ -1,6 +1,8 @@
 template <typename T>
 ArrayStack<T>::ArrayStack(int i) {
-    // TODO
+    this->maxSize = i;
+    this->length = 0;
+    this->buffer = new T[maxSize];
 }
 
 template <typename T>
@@ -24,12 +26,26 @@ ArrayStack<T>::~ArrayStack() {
 
 template <typename T>
 void ArrayStack<T>::clear() {
-    // TODO
+    if (this->buffer != nullptr) {
+        delete[] this->buffer;
+        this->buffer = nullptr;
+    }
+
+    this->length = 0;
+    this->maxSize = 0;
 }
 
 template <typename T>
 void ArrayStack<T>::copy(const ArrayStack<T>& copyObj) {
-    // TODO
+    this->length = copyObj.length;
+    this->maxSize = copyObj.maxSize;
+
+    this->buffer = new T[this->maxSize];
+
+    for (int i = 0; i < this->length; i++) {
+        this->buffer[i] = copyObj.buffer[i];
+    }
+
 }
 
 template <typename T>
@@ -54,22 +70,58 @@ bool ArrayStack<T>::isFull() const {
 
 template <typename T>
 T ArrayStack<T>::peek() const {
-    // TODO
+    if (this->isEmpty()) {
+        throw underflow_error("peek(): Stack is empty");
+    }
+
+    return this->buffer[this->length - 1];
 }
 
 template <typename T>
 void ArrayStack<T>::pop() {
-    // TODO
+    if (this->isEmpty()) {
+        throw underflow_error("pop(): Stack is empty");
+    }
+
+    this->length--;
 }
 
 template <typename T>
 void ArrayStack<T>::push(const T& elem) {
-    // TODO
+    if (this->isFull()) {
+        throw overflow_error("push(): Stack is full");
+    }
+
+    this->buffer[this->length] = elem;
+    this->length++;
 }
 
 template <typename T>
 void ArrayStack<T>::rotate(typename Stack<T>::Direction dir) {
-    // TODO
+    if (this->length <= 1) return;
+
+    switch (dir) {
+        case Stack<T>::RIGHT: {
+            // bottom -> top
+            T bottom = this->buffer[0];
+            for (int i = 0; i < this->length - 1; i++) {
+                this->buffer[i] = this->buffer[i + 1];
+            }
+            this->buffer[this->length - 1] = bottom;
+            break;
+        }
+        case Stack<T>::LEFT: {
+            // top -> bottom
+            T top = this->buffer[this->length - 1];
+            for (int i = this->length - 1; i > 0; --i) {
+                this->buffer[i] = this->buffer[i - 1];
+            }
+            this->buffer[0] = top;
+            break;
+        }
+        default:
+            break;
+    }
 }
 
 template <typename T>

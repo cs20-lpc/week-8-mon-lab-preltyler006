@@ -1,0 +1,27 @@
+tylerprellwitz@Tylers-MacBook-Air-2 week-8-mon-lab-preltyler006 % ./driver 
+[OK]   New stack starts empty
+[OK]   New stack is not full
+A [top->bottom] (len=5/5): 5 4 3 2 1
+[OK]   Length after 5 pushes is 5
+[OK]   Stack becomes full at capacity
+[OK]   Caught overflow: push(): Stack is full
+[OK]   Peek returns top element (5)
+[OK]   After one pop, top is 4
+A [top->bottom] (len=4/5): 4 3 2 1
+B (copy of A) [top->bottom] (len=4/5): 4 3 2 1
+[OK]   Copy has same length
+[OK]   B top becomes 3 after pop
+[OK]   A remains unaffected (top still 4)
+C (assigned from A) [top->bottom] (len=4/5): 4 3 2 1
+[OK]   Assigned stack has same length
+[OK]   Self-assignment leaves stack intact
+B after clear() [top->bottom] (len=0/0): <empty>
+[OK]   Cleared stack is empty
+[OK]   Caught underflow (pop): pop(): Stack is empty
+[OK]   Caught underflow (peek): peek(): Stack is empty
+[OK]   Top is 20
+D [top->bottom] (len=3/3): 40 30 10
+[OK]   D is full at capacity 3
+[OK]   Top of D is 40
+
+All tests done.
